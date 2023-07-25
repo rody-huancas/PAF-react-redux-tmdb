@@ -2,6 +2,37 @@
 @tailwind components;
 @tailwind utilities;
 
+.contener_trailer {
+  position: fixed;
+  z-index: 1000;
+  height: 100vh;
+  width: 100%;
+}
+
 .relative:hover > .absolute {
   opacity: 1;
+}
+
+.viewtrailer {
+  min-height: 100vh;
+  background-size: cover;
+  background-position: center;
+
+  display: flex;
+  align-items: flex-end;
+  object-fit: cover;
+}
+
+.boton {
+  background-color: #0f1014;
+  color: white;
+  outline: none;
+  border: 1px solid white;
+  padding: 10px 15px;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+.reproductor {
+  width: 100%;
+  height: 600px;
 }

@@ -1,17 +1,29 @@
 import { useState } from "react";
 import {
   RiHome3Line,
-  RiLayoutGridLine,
   RiMenu3Fill,
   RiCloseLine,
   RiSearchLine,
   RiMore2Fill,
 } from "react-icons/ri";
-import { Link } from "react-router-dom";
+import { BsStars } from "react-icons/bs";
+
+import { Link, useNavigate } from "react-router-dom";
 
 export const Header = () => {
   const [showMenu, setShowMenu] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
+  const navigate = useNavigate();
 
+  const handleSearchSubmit = (e) => {
+    e.preventDefault();
+    const trimmedQuery = searchQuery.trim();
+    if (trimmedQuery !== "") {
+      navigate(`/search/${trimmedQuery}`);
+    } else {
+      navigate("/");
+    }
+  };
   const toggleMenu = () => {
     setShowMenu(!showMenu);
   };
@@ -55,7 +67,7 @@ export const Header = () => {
                   to="/favorites"
                   className="text-gray-300 flex items-center gap-4 hover:bg-[#232323] py-3 px-4 rounded-xl transition-colors"
                 >
-                  <RiLayoutGridLine />
+                  <BsStars />
                   Mis Favoritos
                 </Link>
               </li>
@@ -72,10 +84,15 @@ export const Header = () => {
 
         {/* HEADER */}
         <header className="fixed lg:pl-[340px] w-full flex flex-col md:flex-row items-center justify-between gap-4 p-8 bg-[#141414] z-40">
-          <form className="relative w-full xl:w-1/3 flex items-center gap-5">
+          <form
+            onSubmit={handleSearchSubmit}
+            className="relative w-full xl:w-1/3 flex items-center gap-5"
+          >
             <RiSearchLine className="text-gray-500 absolute top-3 left-2" />
             <input
               type="text"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
               className="bg-[#232323] outline-none text-gray-300 py-2 pl-8 pr-4 rounded-2xl w-full"
               placeholder="Buscar Película"
             />

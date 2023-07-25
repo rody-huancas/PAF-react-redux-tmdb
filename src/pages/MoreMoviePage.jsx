@@ -10,13 +10,15 @@ export const MoreMoviePage = () => {
   const data = useSelector((state) => state.data.datos);
   const [currentPage, setCurrentPage] = useState(1);
 
+  window.scrollTo({ top: 0, behavior: "smooth" });
+
   useEffect(() => {
     fetchDataFromAPI();
   }, [currentPage]);
 
   const fetchDataFromAPI = async () => {
     try {
-      const apiData = await fetchData(currentPage, "en-US");
+      const apiData = await fetchData(currentPage, "es-MX");
       dispatch(actions.actualizarDatos(apiData));
     } catch (error) {
       console.error("Error:", error);
@@ -48,8 +50,8 @@ export const MoreMoviePage = () => {
   return (
     <>
       <div className="smooth-scroll">
-        <h2 className="text-[#eb6d6d] text-4xl font-bold capitalize mb-10">
-          Nuestras películas
+        <h2 className="text-4xl font-bold capitalize mb-10">
+          Nuestras <span className="text-[#eb6d6d]">películas</span>
         </h2>
         <div className="w-[100%] grid grid-cols-4 place-items-center mx-auto gap-5">
           {data?.results?.map((movie) => (

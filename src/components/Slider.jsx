@@ -15,10 +15,9 @@ export const Slider = () => {
 
   const fetchDataFromAPI = useCallback(async () => {
     try {
-      const apiData = await fetchData(1, "en-US");
+      const apiData = await fetchData(1, "es-MX");
       const first7Movies = apiData.results.slice(0, 7);
       setMovies(first7Movies);
-      setOverview(first7Movies?.[0]?.overview || "");
     } catch (error) {
       console.error("Error:", error);
     }
@@ -37,6 +36,10 @@ export const Slider = () => {
       clearInterval(interval);
     };
   }, [movies.length]);
+
+  useEffect(() => {
+    setOverview(movies[currentIndex]?.overview || "");
+  }, [currentIndex, movies]);
 
   const prevSlide = () => {
     setCurrentIndex((prevIndex) =>
@@ -63,7 +66,7 @@ export const Slider = () => {
         className="w-full h-full rounded-2xl bg-center bg-cover duration-500 grayscale"
       ></div>
 
-      <div className="absolute left-40 bottom-10 flex items-center gap-10">
+      <div className="absolute left-40 bottom-10 flex items-end gap-10">
         <img
           src={`${getImageUrl(currentMovie.poster_path)}`}
           className="w-[400px] h-[550px] mx-auto rounded-lg hover:scale-110 transition-all duration-100"
@@ -72,13 +75,12 @@ export const Slider = () => {
 
         <div className="flex flex-col gap-5">
           <div className="flex flex-col gap-5">
-            <button className="2xl:w-1/5 w-1/3 flex items-center gap-2 bg-red-600 px-5 py-3 rounded-xl uppercase font-medium text-lg hover:bg-red-900 transition-colors">
-              <BsFillPlayCircleFill />
-              Ver trailer
-            </button>
+            <h2 className="font-extrabold text-6xl uppercase text-red-600">
+              {currentMovie.title}
+            </h2>
             <Link
               to={`/detail/${currentMovie.id}`}
-              className="2xl:w-1/5 w-1/3 flex items-center gap-2 bg-blue-600 px-5 py-3 rounded-xl uppercase font-medium text-lg hover:bg-blue-900 transition-colors"
+              className="w-[220px] flex items-center gap-2 bg-blue-600 px-5 py-3 rounded-xl uppercase font-medium text-lg hover:bg-blue-900 transition-colors"
             >
               <BiLinkExternal />
               Ver detalles

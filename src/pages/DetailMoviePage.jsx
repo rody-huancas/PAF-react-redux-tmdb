@@ -7,6 +7,8 @@ export const DetailMoviePage = () => {
   const { id } = useParams();
   const [movieDetails, setMovieDetails] = useState(null);
 
+  window.scrollTo({ top: 0, behavior: "smooth" });
+
   useEffect(() => {
     const fetchMovieDetailsById = async () => {
       try {

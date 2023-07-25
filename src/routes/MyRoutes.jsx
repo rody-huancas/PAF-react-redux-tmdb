@@ -5,6 +5,7 @@ import {
   FavoritesPage,
   DetailMoviePage,
   MoreMoviePage,
+  SearchPage,
 } from "../pages";
 
 const MyRoutes = () => {
@@ -16,6 +17,7 @@ const MyRoutes = () => {
           <Route path="/favorites" element={<FavoritesPage />} />
           <Route path="/more" element={<MoreMoviePage />} />
           <Route path="/detail/:id" element={<DetailMoviePage />} />
+          <Route path="/search/:query" element={<SearchPage />} />
         </Route>
       </Routes>
     </BrowserRouter>
