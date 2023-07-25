@@ -5,6 +5,7 @@ import {
   RiMenu3Fill,
   RiCloseLine,
   RiSearchLine,
+  RiMore2Fill,
 } from "react-icons/ri";
 import { Link } from "react-router-dom";
 
@@ -38,6 +39,15 @@ export const Header = () => {
                 >
                   <RiHome3Line />
                   Inicio
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/more"
+                  className="text-gray-300 flex items-center gap-4 hover:bg-[#232323] py-3 px-4 rounded-xl transition-colors"
+                >
+                  <RiMore2Fill />
+                  Más Peliculas
                 </Link>
               </li>
               <li>
