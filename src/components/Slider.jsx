@@ -66,7 +66,7 @@ export const Slider = () => {
         className="w-full h-full rounded-2xl bg-center bg-cover duration-500 grayscale"
       ></div>
 
-      <div className="w-full absolute xl:left-40 bottom-10 xl:bottom-10 flex flex-col xl:flex-row items-center justify-center gap-10">
+      <div className="w-full absolute xl:left-20 bottom-10 xl:bottom-10 flex flex-col xl:flex-row items-center justify-center gap-10">
         <img
           src={`${getImageUrl(currentMovie.poster_path)}`}
           className="xl:w-[400px] xl:h-[550px] w-[250px] mx-auto rounded-xl hover:scale-110 transition-all duration-100"

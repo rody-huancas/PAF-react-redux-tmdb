@@ -40,13 +40,11 @@ export const searchMovies = async (query, language) => {
             }
         }
         );
-
         const filteredResults = response.data.results.filter(
             (movie) =>
                 movie.title.toLowerCase().includes(query.toLowerCase()) ||
                 movie.original_title.toLowerCase().includes(query.toLowerCase())
         );
-
         return { results: filteredResults };
     } catch (error) {
         console.error("Error searching movies:", error);
