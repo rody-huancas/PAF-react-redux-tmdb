@@ -27,7 +27,7 @@ export const SearchPage = () => {
         Resultados de <span className="text-[#eb6d6d]">{query}</span>
       </h2>
       {searchResults.length > 0 ? (
-        <div className="grid grid-cols-3 gap-5">
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 place-items-center gap-4">
           {searchResults.map((movie) => (
             <div
               key={movie.id}

@@ -27,11 +27,11 @@ export const DetailMoviePage = () => {
   }
 
   return (
-    <div className="flex justify-center gap-10">
+    <div className="flex flex-col lg:flex-row items-center justify-center gap-10">
       <img
         src={getImageUrl(movieDetails.poster_path)}
         alt={movieDetails.title}
-        className="w-1/3 h-4/5 rounded-2xl shadow-lg"
+        className="w-full h-[700px] lg:w-1/3 lg:h-4/5 object-cover rounded-2xl shadow-lg"
       />
       <div className="w-3/10 flex flex-col gap-10">
         <h3 className="text-[#eb6d6d] text-5xl font-extrabold">

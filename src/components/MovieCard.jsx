@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import YouTube from "react-youtube";
-import { getImageUrl } from "../api/api";
+import { fetchMovieTrailer, getImageUrl } from "../api/api";
 import { BsLink45Deg, BsFillPlayCircleFill } from "react-icons/bs";
 import { BiMessageSquareAdd } from "react-icons/bi";
 
@@ -11,11 +11,9 @@ export const MovieCard = ({ movie }) => {
   const [isFavorite, setIsFavorite] = useState(false);
 
   useEffect(() => {
-    // Check if the movie is already in favorites on component mount
     const favorites = JSON.parse(localStorage.getItem("favorites")) || [];
     setIsFavorite(favorites.includes(movie.id));
 
-    // Fetch the movie details and trailer when the component mounts
     fetchMovieTrailer(movie.id)
       .then((data) => {
         if (
@@ -34,16 +32,6 @@ export const MovieCard = ({ movie }) => {
       });
   }, [movie.id]);
 
-  const fetchMovieTrailer = async (id) => {
-    const API_URL = "https://api.themoviedb.org/3/";
-    const API_KEY = "4b33bcae448525d328a121527e3d878f";
-
-    const response = await fetch(
-      `${API_URL}/movie/${id}?api_key=${API_KEY}&append_to_response=videos`
-    );
-    return response.json();
-  };
-
   const playTrailer = () => {
     setPlaying(true);
   };
@@ -56,11 +44,9 @@ export const MovieCard = ({ movie }) => {
     const favorites = JSON.parse(localStorage.getItem("favorites")) || [];
 
     if (isFavorite) {
-      // Remove from favorites
       const updatedFavorites = favorites.filter((id) => id !== movie.id);
       localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
     } else {
-      // Add to favorites
       localStorage.setItem(
         "favorites",
         JSON.stringify([...favorites, movie.id])
@@ -113,7 +99,7 @@ export const MovieCard = ({ movie }) => {
         <div className="contener_trailer absolute inset-0 flex flex-col justify-center items-center gap-3 bg-black/50">
           <YouTube
             videoId={trailer.key}
-            className="w-[700px] h-[600px] object-cover rounded-lg"
+            className="w-full lg:w-[700px] h-[600px] object-cover rounded-lg"
             opts={{
               width: "100%",
               height: "100%",

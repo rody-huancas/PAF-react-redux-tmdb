@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { getImageUrl } from "../api/api";
+import { fetchFavoriteMovies, getImageUrl } from "../api/api";
 
 export const FavoritesPage = () => {
   const [favorites, setFavorites] = useState([]);
@@ -10,23 +10,16 @@ export const FavoritesPage = () => {
 
     window.scrollTo({ top: 0, behavior: "smooth" });
 
-    const fetchFavoriteMovies = async () => {
-      const API_URL = "https://api.themoviedb.org/3/";
-      const API_KEY = "4b33bcae448525d328a121527e3d878f";
-
-      const favoriteMovies = await Promise.all(
-        favoriteIds.map(async (id) => {
-          const response = await fetch(
-            `${API_URL}/movie/${id}?api_key=${API_KEY}`
-          );
-          return response.json();
-        })
-      );
-
-      setFavorites(favoriteMovies);
+    const fetchFavorites = async () => {
+      try {
+        const favoriteMovies = await fetchFavoriteMovies(favoriteIds);
+        setFavorites(favoriteMovies);
+      } catch (error) {
+        console.error("Error: ", error);
+      }
     };
 
-    fetchFavoriteMovies();
+    fetchFavorites();
   }, []);
 
   const removeFavorite = (id) => {
@@ -41,7 +34,10 @@ export const FavoritesPage = () => {
         Mis peli<span className="text-[#eb6d6d]">culas Favoritas</span>
       </h1>
       {favorites.length > 0 ? (
-        <ul key={favorites.id} className="grid grid-cols-3 gap-4">
+        <ul
+          key={favorites.id}
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4"
+        >
           {favorites.map((fav) => (
             <li className="bg-gray-800 p-5 rounded-lg" key={fav.id}>
               <Link to={`/detail/${fav.id}`}>

@@ -58,7 +58,7 @@ export const Slider = () => {
   const currentMovie = movies[currentIndex] || {};
 
   return (
-    <div className="h-[700px] w-full m-auto relative mb-10 group">
+    <div className="max-w-[100%] xl:h-[700px] h-[600px] w-full m-auto relative mb-10 group overflow-hidden">
       <div
         style={{
           backgroundImage: `url(${getImageUrl(currentMovie.poster_path)})`,
@@ -66,27 +66,27 @@ export const Slider = () => {
         className="w-full h-full rounded-2xl bg-center bg-cover duration-500 grayscale"
       ></div>
 
-      <div className="absolute left-40 bottom-10 flex items-end gap-10">
+      <div className="w-full absolute xl:left-40 bottom-10 xl:bottom-10 flex flex-col xl:flex-row items-center justify-center gap-10">
         <img
           src={`${getImageUrl(currentMovie.poster_path)}`}
-          className="w-[400px] h-[550px] mx-auto rounded-lg hover:scale-110 transition-all duration-100"
+          className="xl:w-[400px] xl:h-[550px] w-[250px] mx-auto rounded-xl hover:scale-110 transition-all duration-100"
           alt=""
         />
 
         <div className="flex flex-col gap-5">
-          <div className="flex flex-col gap-5">
-            <h2 className="font-extrabold text-6xl uppercase text-red-600">
+          <div className="w-full xl:w-10/12 flex flex-col items-center lg:items-start gap-5">
+            <h2 className="font-extrabold text-2xl xl:text-6xl uppercase text-red-600">
               {currentMovie.title}
             </h2>
             <Link
               to={`/detail/${currentMovie.id}`}
-              className="w-[220px] flex items-center gap-2 bg-blue-600 px-5 py-3 rounded-xl uppercase font-medium text-lg hover:bg-blue-900 transition-colors"
+              className="flex items-center gap-2 bg-blue-600 px-5 py-3 rounded-lg uppercase font-medium text-lg hover:bg-blue-900 transition-colors"
             >
               <BiLinkExternal />
               Ver detalles
             </Link>
           </div>
-          <p className="w-10/12 bg-gray-900 p-2 rounded-lg text-gray-100 ">
+          <p className="w-10/12 bg-gray-900 p-2 rounded-xl text-gray-100 hidden xl:block">
             {overview}
           </p>
         </div>

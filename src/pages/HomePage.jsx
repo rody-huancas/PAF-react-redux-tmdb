@@ -42,7 +42,7 @@ export const HomePage = () => {
       <h2 className="text-4xl font-bold capitalize mb-10">
         Nuestras <span className="text-[#eb6d6d]">películas</span>
       </h2>
-      <div className="w-[100%] grid grid-cols-4 place-items-center mx-auto gap-5">
+      <div className="w-[100%] grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 place-items-center mx-auto gap-5">
         {data?.results?.map((movie) => (
           <MovieCard key={movie.id} movie={movie} />
         ))}

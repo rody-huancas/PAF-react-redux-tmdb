@@ -53,3 +53,41 @@ export const searchMovies = async (query, language) => {
         throw error;
     }
 };
+
+
+export const fetchMovieTrailer = async (id) => {
+    try {
+        const response = await axios.get(`${BASE_URL}${id}`, {
+            params: {
+                api_key: API_KEY,
+                append_to_response: "videos",
+            },
+        });
+        return response.data;
+    } catch (error) {
+        console.error("Error fetching movie trailer:", error);
+        throw error;
+    }
+};
+
+
+export const fetchFavoriteMovies = async (favoriteIds) => {
+    try {
+        const favoriteMovies = await Promise.all(
+            favoriteIds.map(async (id) => {
+                const response = await axios.get(`${BASE_URL}${id}`, {
+                    params: {
+                        api_key: API_KEY,
+                    },
+                });
+
+                return response.data;
+            })
+        );
+
+        return favoriteMovies;
+    } catch (error) {
+        console.error("Error fetching favorite movies:", error);
+        throw error;
+    }
+};
