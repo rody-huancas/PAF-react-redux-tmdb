@@ -41,7 +41,7 @@ export const Header = () => {
               to={"/"}
               className="text-gray-300 uppercase font-extrabold text-2xl tracking-[5px] mb-10"
             >
-              MIS <span className="text-[#eb6d6d]">PELICULAS</span>
+              Trail<span className="text-[#eb6d6d]">Flix</span>
             </Link>
             <ul className="mt-5">
               <li>
